@@ -1,14 +1,10 @@
 const mongoose = require('mongoose');
 
 const EventSchema = new mongoose.Schema({
-    jobRole: String,
-    company: String,
-    technologies: String,
-    fromWhere: String,
-    interview: Boolean,
-    phoneScreening: Boolean,
-    accepted: Boolean,
-    denied: Boolean
+    name: String,
+    location: String,
+    startDate: String,
+    endDate: String
 }, { timestamps: true });
 
 const Events = mongoose.model('Events', EventSchema);
