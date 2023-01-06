@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 //express 
 const app = express();
-app.use(cors());
+
 const port = 8001;
 app.use(express.json());
 
