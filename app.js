@@ -14,6 +14,9 @@ mongoose.connect('mongodb://localhost/eventstracker');
 //routes
 const eventsRoutes = require('./controllers/eventController');
 app.use('/events', eventsRoutes)
+
+const userRoutes = require('./controllers/userController');
+app.use('/users', userRoutes)
 //Express Listener
 const listener = () => {
     console.log(`server on ${port}`);
