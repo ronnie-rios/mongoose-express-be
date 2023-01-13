@@ -4,10 +4,12 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 //express 
 const app = express();
+const auth = require('./util/auth')
 
 const port = 8001;
 app.use(express.json());
 app.use(cors());
+app.use(auth)
 //mongoose connection
 mongoose.connect('mongodb://localhost/eventstracker');
 

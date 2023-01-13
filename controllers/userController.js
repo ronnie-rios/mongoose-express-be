@@ -4,7 +4,6 @@ const crypto = require('crypto');
 const passport = require('passport');
 
 const User = require('../models/User');
-const { model } = require('mongoose');
 
 const requiredToken = passport.authenticate('bearer', { session: false });
 
@@ -28,7 +27,9 @@ router.post('/signup', async (req, res) => {
             const userData = {
                 email: req.body.email,
                 username: req.body.username,
-                hashedPassword: hashedPw
+                hashedPassword: hashedPw,
+                firstname: req.body.firstname,
+                lastname: req.body.lastname
             }
             const newUser = await User.create(userData);
             return res.json(newUser)
@@ -55,6 +56,19 @@ router.post('/login', async (req, res) => {
         } else {
             return res.status(400).json({ error: 'invalid pw'})
         }
+    } catch (error) {
+        res.json(error)
+    }
+});
+router.get('/profile/:id', async (req, res) => {
+    const id = req.params.id;
+    
+    try {     
+        const foundUser = await User.findById(id);
+        if(foundUser === null) {
+            return res.status(404).json({ err: 'user not found' })
+        }
+       res.json(foundUser)
     } catch (error) {
         res.json(error)
     }

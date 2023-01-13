@@ -15,6 +15,8 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    firstname: String,
+    lastname: String,
     token: String,
     address: String,
     Phone: String,
